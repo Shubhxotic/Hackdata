@@ -1,0 +1,6 @@
+flask
+requests
+gunicorn
+requests
+wtforms
+bs4
