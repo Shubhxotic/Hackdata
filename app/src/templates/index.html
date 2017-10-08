@@ -123,12 +123,12 @@
     {% else %}
         <h1>The possible diseases are:- {{pd}} </h1>
     <h2>{{len(ques)}}</h2>
-<form action="/selectedQuery" method="post">
+    <form action="/selectedQuery" method="post">
         {% for i in range(len(ques)) %}
             <h3>{{ques[i]}}</h3>
               <input type="checkbox" name="yb" value="{{dis[i]}}">
-              <input type="submit" value="Submit">
         {% endfor %}
+        <input type="submit" value="Submit">
         </form>
     {% endif %}
 

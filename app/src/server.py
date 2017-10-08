@@ -338,10 +338,10 @@ def search():
                 }
         print(query)
         questions = requests.post(query_url, data=json.dumps(query), headers=headers).json()
-        print("r=======", r, "\n", r.json())
+        print("r=======", questions, "\n\n\n\n\n\n\n\n\n")
         ques.append(questions[0]['Question'])
         dis.append(questions[0]['Disease'])
-    return render_template('index.html', symptoms=symp, pd=ProbableDiseases, len=len, questions=ques, dis=dis)
+    return render_template('index.html', symptoms=symp, pd=ProbableDiseases, len=len, ques=ques, dis=dis)
 
     # if 'logged_in' in session:
     #     headers['Authorization'] = 'Bearer ' + session['auth_token']
@@ -392,7 +392,11 @@ def selectedQuery():
     print(type(request.form))
     x = dict(request.form)
     print("\n\n\nx=======",x)
-
+    dis=[]
+    disres=x['yb']
+    for i in disres:
+        dis.append(i)
+    return render_template('final.html', diseases=dis)
 
 
 if __name__ == '__main__':
