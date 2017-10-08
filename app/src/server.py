@@ -282,6 +282,9 @@ def login():
 # def PredDis():
 #
 
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
 @app.route('/search', methods=["POST"])
 def search():
@@ -341,7 +344,20 @@ def search():
         print("r=======", questions, "\n\n\n\n\n\n\n\n\n")
         ques.append(questions[0]['Question'])
         dis.append(questions[0]['Disease'])
-    return render_template('index.html', symptoms=symp, pd=ProbableDiseases, len=len, ques=ques, dis=dis)
+    feebie=""
+    if(len(dis)==1):
+        query = {"type": "select",
+                 "args": {
+                     "table": "Disease",
+                     "columns": ["symptom"],
+                     "where": {"disease": dis[0]}
+                 }
+                }
+        print(query)
+        res = requests.post(query_url, data=json.dumps(query), headers=headers).json()
+        print("r=======", res, "\n\n\n\n\n\n\n\n\n")
+        feebie=res[0]['symptom']
+    return render_template('index.html', symptoms=symp, pd=ProbableDiseases, len=len, ques=ques, dis=dis, dis1=feebie)
 
     # if 'logged_in' in session:
     #     headers['Authorization'] = 'Bearer ' + session['auth_token']
@@ -396,7 +412,20 @@ def selectedQuery():
     disres=x['yb']
     for i in disres:
         dis.append(i)
-    return render_template('final.html', diseases=dis)
+    symps=[]
+    for i in dis:
+        query = {"type": "select",
+             "args": {
+                 "table": "Disease",
+                 "columns": ["*"],
+                 "where": {"disease": i}
+             }
+             }
+        print(query)
+        res = requests.post(query_url, data=json.dumps(query), headers=headers).json()
+        print("r=======", res, "\n\n\n\n\n\n\n\n\n")
+        symps.append(res[0]['symptom'])
+    return render_template('final.html', diseases=dis,symps=symps, len=len)
 
 
 if __name__ == '__main__':
