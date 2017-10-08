@@ -69,9 +69,10 @@
 				<h1 ><a href="index.html"><b>T<br>H<br>E</b>SymPal<span>Disease Predictor</span></a></h1>
 			</div>
 			<div class="head-t">
-				<ul class="card">
-					<li><a href="/login" ><i class="fa fa-user" aria-hidden="true"></i><button class="btn btn-primary">Login</button></a></li>
-					<li><a href="/register" ><i class="fa fa-arrow-right" aria-hidden="true"></i><button class="btn btn-primary">Register</button></a></li>
+
+                <ul class="card row">
+					<li ><a href="/login" ><i class="fa fa-user" aria-hidden="true"></i>Login</a></li>
+					<li ><a href="/register" ><i class="fa fa-arrow-right" aria-hidden="true"></i>Register</a></li>
 				</ul>
 			</div>
         </div>
@@ -81,4 +82,5 @@
         <h1>{{diseases[i]}}</h1>
         <h3>Symptoms:- {{symps[i]}} </h3>
     {% endfor %}
+<h1>Please visit your nearest doctor at <a href="#">Max Hospital</a></h1>
 {% endblock %}

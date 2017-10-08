@@ -63,6 +63,7 @@
 	<!---//End-rate---->
 {% endblock %}
 {% block body %}
+<a href="/"></a><i class="fa fa-home fa-3x"></i></a>
 <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -89,9 +90,9 @@
 				<h1 ><a href="index.html"><b>T<br>H<br>E</b>SymPal<span>Disease Predictor</span></a></h1>
 			</div>
 			<div class="head-t">
-								<ul class="card">
-					<li><a href="/login" ><i class="fa fa-user" aria-hidden="true"></i><button class="btn btn-primary">Login</button></a></li>
-					<li><a href="/register" ><i class="fa fa-arrow-right" aria-hidden="true"></i><button class="btn btn-primary">Register</button></a></li>
+								<ul class="card row">
+					<li ><a href="/login" ><i class="fa fa-user" aria-hidden="true"></i>Login</a></li>
+					<li ><a href="/register" ><i class="fa fa-arrow-right" aria-hidden="true"></i>Register</a></li>
 				</ul>
 			</div>
         </div>
@@ -120,6 +121,7 @@
         <!--{% endfor %}-->
         <!--</div>-->
         <!--</div>-->
+
         <div class="dropdown col-md-8" style="float:left;">
           <input type="text" name="Search" id="search" placeholder="Search..." class="dropbtn m-0 w-100">
               <div class="dropdown-content" style="left:0;">
@@ -141,14 +143,19 @@
         <h1>Your most likely disease is {{pd[0]}} </h1>
         <h2>Check out these possible symptoms <a href="#" data-toggle="modal" data-target="#modal4">here</a> </h2>
     {% else %}
+       {% if len(pd)!=0 %}
         <h1>The possible diseases are:- {{pd}} </h1>
+        {% endif %}
         <!--<h2>{{len(ques)}}</h2>-->
     <form action="/selectedQuery" class="text-center" method="post">
         {% for i in range(len(ques)) %}
             <h3>{{ques[i]}}</h3><input type="checkbox" name="yb" value="{{dis[i]}}">
         {% endfor %}
         <br>
+        {% if len(pd)!=0 %}
         <input type="submit" class="btn btn-success" value="Submit">
+        {% endif %}
+
         </form>
     {% endif %}
 

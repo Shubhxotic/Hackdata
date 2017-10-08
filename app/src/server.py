@@ -154,6 +154,8 @@ def hello():
     # print(headers)
     # r = requests.post(query_url, data=json.dumps(query), headers=headers).json()
     # print("r=====", r)
+
+
     query_url = data_url + '/v1/query'
     symp = []
     query = {"type": "select",
@@ -205,15 +207,15 @@ def hello():
     #     print("r=======", r, "\n", r.json())
     #     ques.append(questions['Question'])
     #     dis.append(questions['Disease'])
-    return render_template('index.html',  len=len )
+    return render_template('index.html',  len=len ,symptoms=symp)
     # return render_template("index.html")
     # return json.dumps({"message":"Hello World!"})
 
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    print("Config.Development=====", config.DEVELOPMENT)
-    print("This is login endpoint")
+    # print("Config.Development=====", config.DEVELOPMENT)
+    # print("This is login endpoint")
     print(headers)
     try:
         if ('Authorization') in headers.keys():
